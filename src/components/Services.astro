@@ -1,0 +1,38 @@
+---
+import { Landmark, Building2 } from '@lucide/astro'
+import { services } from '../data/services'
+
+const iconMap: Record<string, any> = {
+  Landmark,
+  Building2,
+}
+---
+
+<section id="areas" class="scroll-mt-16 lg:scroll-mt-20 py-20 lg:py-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="text-gold text-sm font-medium tracking-widest uppercase">Especialidades</span>
+      <h2 class="mt-4 text-3xl lg:text-4xl font-serif">Áreas de Atuação</h2>
+      <div class="mx-auto mt-4 w-16 h-0.5 bg-gold/60" />
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      {
+        services.map((service) => {
+          const Icon = iconMap[service.icon]
+          return (
+            <div class="group relative p-8 rounded-xl border border-gray-800 bg-gray-900/50 hover:border-gold/40 hover:-translate-y-1 transition-all duration-300">
+              {Icon && (
+                <div class="mb-6 w-14 h-14 rounded-lg bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors duration-300">
+                  <Icon class="w-7 h-7 text-gold" />
+                </div>
+              )}
+              <h3 class="text-xl font-serif text-white mb-3">{service.title}</h3>
+              <p class="text-gray-400 leading-relaxed text-sm">{service.description}</p>
+            </div>
+          )
+        })
+      }
+    </div>
+  </div>
+</section>

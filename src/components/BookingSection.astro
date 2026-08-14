@@ -1,0 +1,26 @@
+---
+import Booking from '../components/react/Booking'
+---
+
+<section id="agendamento" class="scroll-mt-16 lg:scroll-mt-20 py-20 lg:py-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="text-gold text-sm font-medium tracking-widest uppercase">Agende seu atendimento</span>
+      <h2 class="mt-4 text-3xl lg:text-4xl font-serif">Agendamento</h2>
+      <div class="mx-auto mt-4 w-16 h-0.5 bg-gold/60" />
+    </div>
+
+    <div class="max-w-3xl mx-auto text-center mb-10">
+      <p class="text-gray-400 text-base lg:text-lg leading-relaxed">
+        Escolha um horário disponível nos próximos 14 dias para uma reunião
+        <strong class="text-gray-200"> presencial </strong> ou
+        <strong class="text-gray-200"> online </strong>.
+        O agendamento é rápido e você receberá a confirmação por e-mail, onde é possível cancelar.
+      </p>
+    </div>
+
+    <div class="min-h-[630px]">
+      <Booking client:visible />
+    </div>
+  </div>
+</section>

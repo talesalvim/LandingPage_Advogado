@@ -1,0 +1,183 @@
+---
+import { Image } from 'astro:assets'
+import logo from '../assets/logoEscritorio.jpeg'
+import { navigation } from '../data/navigation'
+---
+
+<nav
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-black/30"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <a href="#" class="flex-shrink-0" aria-label="Página inicial">
+        <Image
+          src={logo}
+          alt="Logo Douglas Genelhu Guilherme — Advocacia"
+          class="h-10 w-auto lg:h-14"
+        />
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        {
+          navigation.map((link) => (
+            <a
+              href={link.href}
+              class="text-sm font-medium text-gray-300 hover:text-gold transition-colors duration-300"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+
+      <button
+        id="menu-toggle"
+        class="md:hidden relative z-50 p-2 text-gray-300 hover:text-gold transition-colors"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        aria-label="Abrir menu"
+      >
+        <svg
+          id="menu-icon-open"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-menu"
+        >
+          <line x1="4" x2="20" y1="12" y2="12" />
+          <line x1="4" x2="20" y1="6" y2="6" />
+          <line x1="4" x2="20" y1="18" y2="18" />
+        </svg>
+        <svg
+          id="menu-icon-close"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-x hidden"
+        >
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="md:hidden fixed inset-0 z-40 flex items-center justify-center bg-black/95 opacity-0 invisible pointer-events-none transition-all duration-300 h-dvh"
+    aria-hidden="true"
+  >
+    <nav class="flex flex-col items-center gap-8">
+      {
+        navigation.map((link) => (
+          <a
+            href={link.href}
+            class="text-2xl font-serif text-gray-200 hover:text-gold transition-colors duration-300"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</nav>
+
+<script lang="ts">
+  (function () {
+    var navbar = document.getElementById('navbar')
+    var toggle = document.getElementById('menu-toggle')
+    var menu = document.getElementById('mobile-menu')
+    var iconOpen = document.getElementById('menu-icon-open')
+    var iconClose = document.getElementById('menu-icon-close')
+
+    if (!navbar || !toggle || !menu || !iconOpen || !iconClose) {
+      console.warn('[Navbar] Elementos do DOM não encontrados. Verifique os IDs no template.')
+      return
+    }
+
+    var ticking = false
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          var scrolled = window.scrollY > 50
+          navbar.classList.toggle('bg-black/80', scrolled)
+          navbar.classList.toggle('backdrop-blur-md', scrolled)
+          navbar.classList.toggle('shadow-lg', scrolled)
+          ticking = false
+        })
+        ticking = true
+      }
+    })
+
+    function openMenu() {
+      toggle.setAttribute('aria-expanded', 'true')
+      menu.setAttribute('aria-hidden', 'false')
+      menu.classList.remove('opacity-0', 'invisible', 'pointer-events-none')
+      menu.classList.add('opacity-100', 'visible', 'pointer-events-auto')
+      iconOpen.classList.add('hidden')
+      iconClose.classList.remove('hidden')
+      var scrollY = window.scrollY
+      document.body.style.position = 'fixed'
+      document.body.style.top = '-' + scrollY + 'px'
+      document.body.style.left = '0'
+      document.body.style.right = '0'
+      document.body.style.width = '100%'
+      document.body.style.overflow = 'hidden'
+      toggle.setAttribute('aria-label', 'Fechar menu')
+      setTimeout(function () {
+        var first = menu.querySelector('a')
+        if (first) first.focus()
+      }, 100)
+    }
+
+    function closeMenu() {
+      toggle.setAttribute('aria-expanded', 'false')
+      menu.setAttribute('aria-hidden', 'true')
+      menu.classList.add('opacity-0', 'invisible', 'pointer-events-none')
+      menu.classList.remove('opacity-100', 'visible', 'pointer-events-auto')
+      iconOpen.classList.remove('hidden')
+      iconClose.classList.add('hidden')
+      var scrollY = parseInt(document.body.style.top || '0') * -1
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.left = ''
+      document.body.style.right = ''
+      document.body.style.width = ''
+      document.body.style.overflow = ''
+      window.scrollTo(0, scrollY || 0)
+      toggle.setAttribute('aria-label', 'Abrir menu')
+      toggle.focus()
+    }
+
+    toggle.addEventListener('click', function () {
+      var isOpen = toggle.getAttribute('aria-expanded') === 'true'
+      isOpen ? closeMenu() : openMenu()
+    })
+
+    document.addEventListener('keydown', function (e) {
+      if (
+        e.key === 'Escape' &&
+        toggle.getAttribute('aria-expanded') === 'true'
+      ) {
+        closeMenu()
+      }
+    })
+
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeMenu)
+    })
+  })()
+</script>

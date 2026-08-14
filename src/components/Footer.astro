@@ -1,0 +1,89 @@
+---
+import { contact } from '../data/contact'
+import { siteConfig } from '../data/site'
+import { MessageCircle, Mail, MapPin } from '@lucide/astro'
+
+const year = new Date().getFullYear()
+---
+
+<footer id="contato" class="scroll-mt-16 lg:scroll-mt-20 border-t border-gray-800 bg-gray-900/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <div>
+        <h3 class="text-lg font-serif text-white mb-6">Endereço</h3>
+        <div class="flex items-start gap-3">
+          <MapPin class="w-5 h-5 text-gold mt-0.5 shrink-0" />
+          <address class="not-italic text-gray-400 text-sm leading-relaxed">
+            {contact.address}
+          </address>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-serif text-white mb-6">Contato</h3>
+        <ul class="space-y-4">
+          <li>
+            <a
+              href={contact.whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 text-gray-400 hover:text-gold transition-colors duration-300 text-sm"
+            >
+              <MessageCircle class="w-5 h-5 text-gold shrink-0" />
+              <span>{contact.whatsapp}</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href={`mailto:${contact.email}`}
+              class="flex items-center gap-3 text-gray-400 hover:text-gold transition-colors duration-300 text-sm"
+            >
+              <Mail class="w-5 h-5 text-gold shrink-0" />
+              <span>{contact.email}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-serif text-white mb-6">Redes Sociais</h3>
+        <ul class="space-y-4">
+          <li>
+            <a
+              href={contact.instagramLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 text-gray-400 hover:text-gold transition-colors duration-300 text-sm"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram shrink-0 text-gold"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+              <span>{contact.instagram}</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href={contact.linkedinLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 text-gray-400 hover:text-gold transition-colors duration-300 text-sm"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin shrink-0 text-gold"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+              <span>{contact.linkedin}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-gray-800 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-gray-500 text-xs">
+        &copy; {year} {siteConfig.name}. Todos os direitos reservados.<br />
+        Desenvolvido por <a href="https://www.linkedin.com/in/tales-alvim-guilherme-340796264/" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold/80 transition-colors duration-300">Tales Alvim</a>.
+      </p>
+      <p class="text-gray-600 text-xs">
+        {siteConfig.oab}
+      </p>
+    </div>
+  </div>
+</footer>

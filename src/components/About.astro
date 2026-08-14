@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets'
+import photo from '../assets/photo2-advogado.jpeg'
+import { siteConfig } from '../data/site'
+---
+
+<section id="sobre" class="scroll-mt-16 lg:scroll-mt-20 py-20 lg:py-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="text-gold text-sm font-medium tracking-widest uppercase">Quem sou</span>
+      <h2 class="mt-4 text-3xl lg:text-4xl font-serif">Sobre</h2>
+      <div class="mx-auto mt-4 w-16 h-0.5 bg-gold/60" />
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-48 lg:gap-56 items-center">
+      <div class="order-2 lg:order-1">
+        <p class="text-gray-300 leading-relaxed text-base lg:text-lg">
+          Advocacia, consultoria e assessoria especializadas em Direito Empresarial e 
+          Direito Tributário, com 28 anos de experiência. Membro da Comissão Estadual
+          de Direito Empresarial da OAB/ES. Atuação com foco em reduzir riscos de conflitos 
+          e assim preservar interesses de sócios/as e da empresa, além do patrimônio empresarial 
+          e pessoal. Professor de graduação e pós-graduação há mais de 20 anos. Graduado pela Faculdade 
+          de Direito do Vale do Rio Doce, Governador Valadares/MG. Especialista em Direito Civil e Processual 
+          Civil. Especialista em Direito Empresarial. Especialista em Compliance e Integridade 
+          Corporativa. Mestre em Direito das Relações Econômicas.
+        </p>
+        <div class="mt-8 space-y-4">
+          <div class="flex items-start gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scale text-gold mt-0.5 shrink-0"><path d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0"/><path d="M12 11v9"/><path d="M6 21h12"/></svg>
+            <span class="text-gray-400 text-sm"><strong class="text-gray-200">{siteConfig.oab}</strong> — inscrito na Ordem dos Advogados do Brasil</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-handshake text-gold mt-0.5 shrink-0"><path d="M11 17a1 1 0 0 1-1-1c0-.4.2-.8.5-1.1L16 10l-3-3-5.4 5.4A3 3 0 0 0 6 16v1"/><path d="m2 16 5-5 3 3 5-5 3 3 4-4"/></svg>
+            <span class="text-gray-400 text-sm">Atendimento direto e pessoal em todas as etapas, sem atravessadores</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check text-gold mt-0.5 shrink-0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+            <span class="text-gray-400 text-sm">Ética, sigilo profissional e transparência como pilares da atuação</span>
+          </div>
+        </div>
+      </div>
+      <div class="order-1 lg:order-2 flex justify-center lg:justify-start">
+        <div class="relative">
+          <div class="w-64 h-[400px] sm:w-72 sm:h-[440px] lg:w-80 lg:h-[480px] rounded-2xl overflow-hidden ring-1 ring-gold/20">
+            <Image
+              src={photo}
+              alt="Dr. Douglas Genelhu Guilherme — Advogado OAB/ES 31.573"
+              class="w-full h-full object-cover"
+              width={853}
+              height={1280}
+            />
+          </div>
+          <div class="absolute -bottom-4 -right-4 w-full h-full rounded-2xl border border-gold/10 -z-10" aria-hidden="true" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
